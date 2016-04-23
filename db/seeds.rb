@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require "csv"
+
+csv_text = File.read(Rails.root.join("db", "2013_electric_vehicles.csv"))
+puts csv_text
