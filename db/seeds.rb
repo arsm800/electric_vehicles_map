@@ -11,11 +11,11 @@ require "csv"
 csv_text = File.read(Rails.root.join("db", "2013_electric_vehicles.csv"))
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
-  s = State.New
+  s = State.new
   s.state = row["state"]
-  s.electric_vehicles = row["electric vehicles"]
+  s.electric_vehicles = row["electric_vehicles"]
   s.save
-  puts "#{t.state}, #{t.electric_vehicles} saved"
+  puts "#{s.state}, #{s.electric_vehicles} saved"
 end
 
 puts "There are now #{State.count} rows in the transactions table."
