@@ -48,5 +48,6 @@ csv.each do |row|
   e.ev_connector_types = row["ev_connector_types"]
   e.save
   puts "#{e.name} and corresponding data saved."
+end
 
 puts "There are now #{State.count} rows in the states table and #{Station.count} rows in the stations table."
