@@ -8,14 +8,19 @@
 
 require "csv"
 
-csv_text = File.read(Rails.root.join("db", "2013_electric_vehicles.csv"))
+csv_text = File.read(Rails.root.join("db", "electric_vehicles.csv"))
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
   s = State.new
+  s.state_abbr = row["state_abbr"]
   s.state = row["state"]
-  s.electric_vehicles = row["electric_vehicles"]
+  s.electric_vehicles_2013 = row["electric_vehicles_2013"]
+  s.electric_vehicles_2012 = row["electric_vehicles_2012"]
+  s.electric_vehicles_2011 = row["electric_vehicles_2011"]
+  s.electric_vehicles_2010 = row["electric_vehicles_2010"]
+  s.electric_vehicles_2009 = row["electric_vehicles_2009"]
   s.save
-  puts "#{s.state}, #{s.electric_vehicles} saved"
+  puts "#{s.state_abbr}, #{s.state}, #{s.electric_vehicles_2013}, #{s.electric_vehicles_2012}, #{s.electric_vehicles_2011}, #{s.electric_vehicles_2010}, #{s.electric_vehicles_2009}, saved"
 end
 
 puts "There are now #{State.count} rows in the transactions table."

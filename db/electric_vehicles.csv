@@ -1,0 +1,52 @@
+state_abbr,state,electric_vehicles_2013,electric_vehicles_2012,electric_vehicles_2011,electric_vehicles_2010,electric_vehicles_2009
+AK,Alaska,16,16,10,8,2
+AL,Alabama,71,78,74,94,26
+AR,Arkansas,16,13,10,5,2
+AZ,Arizona,392,384,431,325,249
+CA,California,2731,2924,2780,2665,1302
+CO,Colorado,44,44,31,27,10
+CT,Connecticut,19,14,66,14,0
+DE,Delaware,0,0,0,0,0
+DC,District of Columbia,70,66,107,114,0
+FL,Florida,302,311,346,288,10
+GA,Georgia,365,387,347,314,19
+HI,Hawaii,175,190,147,34,2
+IA,Iowa,12,14,14,14,13
+ID,Idaho,12,8,8,3,0
+IL,Illinois,36,33,26,19,5
+IN,Indiana,33,26,14,0,0
+KS,Kansas,48,58,57,32,0
+KY,Kentucky,48,70,70,63,0
+LA,Louisiana,143,152,145,72,24
+MA,Massachusetts,77,98,121,128,93
+MD,Maryland,92,115,93,81,65
+ME,Maine,20,12,17,0,0
+MI,Michigan,124,126,126,122,95
+MN,Minnesota,22,27,31,35,0
+MO,Missouri,75,92,38,64,0
+MS,Mississippi,73,73,59,34,0
+MT,Montana,7,4,5,2,2
+NC,North Carolina,182,180,179,153,84
+ND,North Dakota,0,0,0,0,0
+NE,Nebraska,0,0,5,0,0
+NH,New Hampshire,13,14,11,24,13
+NJ,New Jersey,6,33,42,35,2
+NM,New Mexico,9,11,14,22,0
+NV,Nevada,38,29,27,22,2
+NY,New York,492,485,554,463,427
+OH,Ohio,64,65,85,77,71
+OK,Oklahoma,23,63,80,49,16
+OR,Oregon,93,190,161,158,73
+PA,Pennsylvania,36,19,12,13,1
+RI,Rhode Island,26,18,28,15,0
+SC,South Carolina,80,58,59,56,1
+SD,South Dakota,3,3,5,4,0
+TN,Tennessee,89,81,79,29,15
+TX,Texas,211,233,257,207,0
+UT,Utah,10,21,25,20,6
+VA,Virginia,261,264,278,191,2
+VT,Vermont,2,2,7,5,18
+WA,Washington,224,217,205,104,0
+WI,Wisconsin,9,5,9,9,1
+WV,West Virginia,24,29,10,5,0
+WY,Wyoming,1,1,3,1,1
