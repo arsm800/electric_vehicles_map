@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423223133) do
+ActiveRecord::Schema.define(version: 20160424215414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,4 +26,29 @@ ActiveRecord::Schema.define(version: 20160423223133) do
     t.integer "electric_vehicles_2009"
   end
 
+  create_table "stations", force: :cascade do |t|
+    t.string  "name"
+    t.string  "street_address"
+    t.string  "city"
+    t.string  "state_abbr"
+    t.integer "zip"
+    t.string  "phone_no"
+    t.string  "status"
+    t.string  "expected_date"
+    t.string  "access"
+    t.string  "network"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.integer "id_number"
+    t.string  "owner"
+    t.integer "fed_agency_type"
+    t.string  "fed_agency_name"
+    t.string  "open_date"
+    t.string  "ev_connector_types"
+    t.integer "state_id"
+  end
+
+  add_index "stations", ["state_id"], name: "index_stations_on_state_id", using: :btree
+
+  add_foreign_key "stations", "states"
 end

@@ -5,14 +5,14 @@ class CreateStations < ActiveRecord::Migration
       t.string :street_address
       t.string :city
       t.string :state_abbr
-      t.intger :zip
+      t.integer :zip
       t.string :phone_no
       t.string :status
       t.string :expected_date
       t.string :access
       t.string :network
-      t.number :latitude
-      t.number :longitude
+      t.decimal :latitude
+      t.decimal :longitude
       t.integer :id_number
       t.string :owner
       t.integer :fed_agency_type
