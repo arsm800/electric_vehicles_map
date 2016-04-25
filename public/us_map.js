@@ -34,7 +34,7 @@ var color = d3.scale.quantize()   //A linear scale with discrete output values (
                     .range(["rgb(237, 248, 233)", "rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)"]);
 
 //This d3.csv() function includes d3.json() function within it.//
-d3.csv("/db/electric_vehicles.csv", function(data) {  //Load csv file data and set input domain for color scale.//
+d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set input domain for color scale.//
   color.domain([
     d3.min(data, function(d) { return d.electric_vehicles_2013; }),
     d3.max(data, function(d) { return d.electric_vehicles_2013; })
