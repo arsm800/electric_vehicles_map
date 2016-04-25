@@ -11,7 +11,7 @@ var svg = d3.select("body")
 
 var projection = d3.geo.albersUsa()
                        .translate([w/2, h/2]) //This projection variable must be defined before the path variable (below) because otherwise .projection will be undefined.//
-                       .scale([1200]);   //The default scale is 1000, so anything less shrinks, and anything greater expands it.//
+                       .scale([1600]);   //The default scale is 1000, so anything less shrinks, and anything greater expands it.//
 
 var path = d3.geo.path()
                  .projection(projection);
