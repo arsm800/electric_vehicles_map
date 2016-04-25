@@ -58,6 +58,12 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
   console.log("json data merge complete");
 
+  //Create function to route to state view.//
+  var stateView = function() {
+    console.log("State clicked.");
+    location.href="/states/1";
+  };
+
   //Create paths for d3 map.//
   svg.selectAll("path")
   .data(json.features)
@@ -80,6 +86,9 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
   .on("mouseout", function(d, i) {
     d3.selectAll("path")
       .style("fill-opacity", 1);
+  })
+  .on("click", function() {
+    stateView();
   });
 });
 });
