@@ -30,14 +30,11 @@ require "csv"
 csv_text = File.read(Rails.root.join("db", "electric_fuel_stations.csv"))
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
-  e.name = row["name"]
-  e.street_address = row["street_address"]
+  e = Station.new
   e.city = row["city"]
   e.state_abbr = row["state_abbr"]
   e.zip = row["zip"]
-  e.phone_no = row["phone_no"]
   e.status = row["status"]
-  e.expected_date = row["expected_date"]
   e.access = row["access"]
   e.network = row["network"]
   e.latitude = row["latitude"]
@@ -46,10 +43,9 @@ csv.each do |row|
   e.owner = row["owner"]
   e.fed_agency_type = row["fed_agency_type"]
   e.fed_agency_name = row["fed_agency_name"]
-  e.open_date = row["open_date"]
   e.ev_connector_types = row["ev_connector_types"]
   e.save
-  puts "#{e.name} and corresponding data saved."
+  puts "#{e.id_number} and corresponding data saved."
 end
 
 puts "There are now #{State.count} rows in the states table and #{Station.count} rows in the stations table."

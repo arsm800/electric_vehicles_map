@@ -27,14 +27,10 @@ ActiveRecord::Schema.define(version: 20160424215414) do
   end
 
   create_table "stations", force: :cascade do |t|
-    t.string  "name"
-    t.string  "street_address"
     t.string  "city"
     t.string  "state_abbr"
     t.integer "zip"
-    t.string  "phone_no"
     t.string  "status"
-    t.string  "expected_date"
     t.string  "access"
     t.string  "network"
     t.decimal "latitude"
@@ -43,7 +39,6 @@ ActiveRecord::Schema.define(version: 20160424215414) do
     t.string  "owner"
     t.integer "fed_agency_type"
     t.string  "fed_agency_name"
-    t.string  "open_date"
     t.string  "ev_connector_types"
     t.integer "state_id"
   end
