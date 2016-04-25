@@ -16,3 +16,20 @@
 //= require_tree .
 
 console.log("application");
+
+var getvehicleData = function() {
+  $.getJSON({
+    url: "/get_vehicle_data",
+    type: "get",
+    dataType: "json"
+  });
+};
+// You still need to create a route for the json GET request and create a controller function to get data and format json.//
+
+var getStationData = function () {
+  $.getJSON({
+    url: "/get_stations_data",
+    type: "get",
+    dataType: "json"
+  });
+};
