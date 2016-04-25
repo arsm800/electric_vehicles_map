@@ -61,7 +61,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
   //Create function to route to state view.//
   var stateView = function() {
     console.log("State clicked.");
-    location.href="/states/1";
+    location.href="/states/1";  //Still working on how to get this link to go to the specific state clicked on.//
   };
 
   //Create paths for d3 map.//
