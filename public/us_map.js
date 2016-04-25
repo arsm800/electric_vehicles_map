@@ -58,20 +58,37 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
   console.log("json data merge complete");
 
+  //Create function to route to state view.//
+  var stateView = function() {
+    console.log("State clicked.");
+    location.href="/states/1";  //Still working on how to get this link to go to the specific state clicked on.//
+  };
+
   //Create paths for d3 map.//
   svg.selectAll("path")
-     .data(json.features)
-     .enter()
-     .append("path")
-     .attr("d", path)
-     .style("fill", function(d) {
-       var value = d.properties.value;
-       if (value) {
-         return color(value);
-       }
-       else {
-         return "#ccc";
-       }
-     });
+  .data(json.features)
+  .enter()
+  .append("path")
+  .attr("d", path)
+  .style("fill", function(d) {
+    var value = d.properties.value;
+    if (value) {
+      return color(value);
+    }
+    else {
+      return "#ccc";
+    }
+  })
+  .on("mouseover", function(d, i) {
+    d3.select(this)
+      .style("fill-opacity", 0.5);
+  })
+  .on("mouseout", function(d, i) {
+    d3.selectAll("path")
+      .style("fill-opacity", 1);
+  })
+  .on("click", function() {
+    stateView();
   });
+});
 });
