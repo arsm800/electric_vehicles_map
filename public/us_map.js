@@ -60,18 +60,26 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
   //Create paths for d3 map.//
   svg.selectAll("path")
-     .data(json.features)
-     .enter()
-     .append("path")
-     .attr("d", path)
-     .style("fill", function(d) {
-       var value = d.properties.value;
-       if (value) {
-         return color(value);
-       }
-       else {
-         return "#ccc";
-       }
-     });
+  .data(json.features)
+  .enter()
+  .append("path")
+  .attr("d", path)
+  .style("fill", function(d) {
+    var value = d.properties.value;
+    if (value) {
+      return color(value);
+    }
+    else {
+      return "#ccc";
+    }
+  })
+  .on("mouseover", function(d, i) {
+    d3.select(this)
+      .style("fill-opacity", 0.5);
+  })
+  .on("mouseout", function(d, i) {
+    d3.selectAll("path")
+      .style("fill-opacity", 1);
   });
+});
 });
