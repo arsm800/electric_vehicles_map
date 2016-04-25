@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root to: "states#index"
 
+  resources :states do
+  resources :stations
+end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
