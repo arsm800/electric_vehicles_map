@@ -6,6 +6,8 @@ console.log("graphs-index");
 
 // var dataset = [];
 
+var drawBars = function(year) {
+
 d3.csv("electric_vehicles.csv", function(dataset) {   //"dataset" is the argument you need to pass through .data() for "rect" and "text".//
 dataset.forEach(function(dd) {
   dd.electric_vehicles_2013 = +dd.electric_vehicles_2013;
@@ -137,6 +139,33 @@ svg.append("g")    //"g" refers to a group element, so we append a group element
 .attr("class", "axis")
 .attr("transform", "translate(0, " + (h - 20) + ")")  //Transform property has translate(x, y), where the g element x axis shifts laterally by 0, and horizontally down by h - padding.//
 .call(xAxis);
+});
+};
+
+var clickEventBars = function() {
+  $("#bar2013").on("click", function() {
+    var year = 2013;
+  });
+
+  $("#bar2012").on("click", function() {
+    var year = 2012;
+  });
+
+  $("#bar2011").on("click", function() {
+    var year = 2011;
+  });
+
+  $("#bar2010").on("click", function() {
+    var year = 2010;
+  });
+
+  $("#bar2009").on("click", function() {
+    var year = 2009;
+  });
+};
+
+drawBars(2013);
+clickEventBars();
 
 // var yAxis = d3.svg.axis()
 //                   .scale(yScale)
@@ -189,5 +218,5 @@ svg.append("g")    //"g" refers to a group element, so we append a group element
 //        return h - (d * 10) +14;
 //      });
 // });
-});
+
 })();
