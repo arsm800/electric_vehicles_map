@@ -7,31 +7,32 @@ console.log("graphs-index");
 // var dataset = [];
 
 d3.csv("electric_vehicles.csv", function(dataset) {   //"dataset" is the argument you need to pass through .data() for "rect" and "text".//
-  dataset.forEach(function(dd) {
-    dd.electric_vehicles_2013 = +dd.electric_vehicles_2013;
-    dd.electric_vehicles_2012 = +dd.electric_vehicles_2012;
-    dd.electric_vehicles_2011 = +dd.electric_vehicles_2011;
-    dd.electric_vehicles_2010 = +dd.electric_vehicles_2010;
-    dd.electric_vehicles_2009 = +dd.electric_vehicles_2009;
-  });
-  // for (var i = 0; i < d.length; i ++) {
-  //   dataset.push(d[i]);
-  console.log(dataset[0]);
+dataset.forEach(function(dd) {
+  dd.electric_vehicles_2013 = +dd.electric_vehicles_2013;
+  dd.electric_vehicles_2012 = +dd.electric_vehicles_2012;
+  dd.electric_vehicles_2011 = +dd.electric_vehicles_2011;
+  dd.electric_vehicles_2010 = +dd.electric_vehicles_2010;
+  dd.electric_vehicles_2009 = +dd.electric_vehicles_2009;
+});
+// for (var i = 0; i < d.length; i ++) {
+//   dataset.push(d[i]);
+console.log(dataset[0]);
 
 
 var w = 1200;
 var h =400;
 var barpadding = 1;
+var year = 2013;
 
 var svg = d3.select("body")
-            .append("svg")
-            .attr("height", h)
-            .attr("width", w);
+.append("svg")
+.attr("height", h)
+.attr("width", w);
 
 //Create ordinal x scale.//
 var xScale = d3.scale.ordinal()
-                     .domain(d3.range(dataset.length))  //Sets scale domain (input) to length of data set.//
-                     .rangeRoundBands([0, w], 0);  //Sets scale range to w / dataset length with .05 space between each bar.//
+.domain(d3.range(dataset.length))  //Sets scale domain (input) to length of data set.//
+.rangeRoundBands([0, w], 0);  //Sets scale range to w / dataset length with .05 space between each bar.//
 
 // var sortOrder = false;
 //
@@ -75,56 +76,77 @@ var xScale = d3.scale.ordinal()
 // };
 
 svg.selectAll("rect")
-  .data(dataset)
-  .enter()
-  .append("rect")
-  .attr({
-    x: function(d, i) {
-      return xScale(i);    //Rectangle location is now based on ordinal scale and not svg/padding.//
-      },
-    y: function(d) {
-      return h - d.electric_vehicles_2013 * .175;  //d * 10 is a multiplier.  in order to make the bars taller and keep everything else in sync, I had to adjust the d multiplier on for rectangle height (line 37), and text y coordinate (line 55).//
-      },
-    width: w / dataset.length - 1,
-    height: function(d) {
-      return d.electric_vehicles_2013 * 10;
-      },
-    fill: function(d) {
-      return "rgb(0, 0, " + (d.electric_vehicles_2013 * 10) + ")";   //This makes the taller bars bluer.//
-    }
-  })
-  .on("click", function() {
-    sortBars();
-    sortText();
-  })
-  .on("mouseover", function() {      //Changes color of bar when mouse hovers over it.//
-    d3.select(this)
-    .attr("fill", "lime");
-  })
-  .on("mouseout", function(d) {    //Changes color of bar back to original color after mouse leaves.//
-    d3.select(this)
-    .transition()
-    .duration(100)
-    .attr("fill", "rgb(0, 0, " + (d.electric_vehicles_2013 * 10) + ")");  //This is the same color as defined on original rect attribute.//
-  });
+.data(dataset)
+.enter()
+.append("rect")
+.attr({
+  x: function(d, i) {
+    return xScale(i);    //Rectangle location is now based on ordinal scale and not svg/padding.//
+  },
+  y: function(d) {
+    return h - d["electric_vehicles_" + year] * 0.1;  //d * .175 is a multiplier.  In order to get the entire bar representing California to fit on the svg, I reduced it from 10 to .175.  As a result, the CA bar fits, but every other state's bar apprears much shorter.//
+  },
+  width: w / dataset.length + 1,
+  height: function(d) {
+    return d["electric_vehicles_" + year] * 10;
+  },
+  fill: function(d) {
+    return "rgb(0, 0, " + (d["electric_vehicles_" + year] * 10) + ")";   //This makes the taller bars bluer.//
+  }
+})
+.on("click", function() {
+  sortBars();
+  sortText();
+})
+.on("mouseover", function() {      //Changes color of bar when mouse hovers over it.//
+  d3.select(this)
+  .attr("fill", "lime");
+})
+.on("mouseout", function(d) {    //Changes color of bar back to original color after mouse leaves.//
+  d3.select(this)
+  .transition()
+  .duration(100)
+  .attr("fill", "rgb(0, 0, " + (d["electric_vehicles_" + year] * 10) + ")");  //This is the same color as defined on original rect attribute.//
+});
 
 svg.selectAll("text")
-  .data(dataset)
-  .enter()
-  .append("text")
-  .text(function(d) {
-    return d.state_abbr;
-  })
-  .attr("x", function(d, i) {
-    return i * (w / dataset.length) + (w / dataset.length) / 2;  //Modified this slightly from rectangles.html  so that numbers are still centered.  i is order of number in data array.//
-  })
-  .attr("y", function(d) {
-    return h - (d.electric_vehicles_2013 * 10) + 14;
-  })
-  .attr("font-family", "sans-serif")
-  .attr("font-size", "11px")
-  .attr("fill", "white")
-  .attr("text-anchor", "middle");
+.data(dataset)
+.enter()
+.append("text")
+.text(function(d) {
+  return d.state_abbr;
+})
+.attr("x", function(d, i) {
+  return i * (w / dataset.length) + (w / dataset.length) / 2;  //Modified this slightly from rectangles.html  so that numbers are still centered.  i is order of number in data array.//
+})
+.attr("y", function(d) {
+  return h - d["electric_vehicles_" + year];
+})
+.attr("font-family", "helvetica")
+.attr("font-size", "11px")
+.attr("fill", "black")
+.attr("text-anchor", "middle");
+
+//Create x axis.//
+var xAxis = d3.svg.axis()
+.scale(xScale)
+.orient("bottom")  //Specifies whether axis labels are above ("top") or below ("bottom") axis.//
+.ticks(51); //Sets number of ticks on axis.//
+
+svg.append("g")    //"g" refers to a group element, so we append a group element to svg and call the xAxis function defined above.  Group elements are invisible, but are used to group visible svg elements.//
+.attr("class", "axis")
+.attr("transform", "translate(0, " + (h - 20) + ")")  //Transform property has translate(x, y), where the g element x axis shifts laterally by 0, and horizontally down by h - padding.//
+.call(xAxis);
+
+// var yAxis = d3.svg.axis()
+//                   .scale(yScale)
+//                   .orient("left")
+//                   .ticks(5);
+//
+// svg.append("g")
+//    .attr("class", "axis")
+//    .attr("transform", "translate(" + barpadding +", 0)")  //Not sure exactly how this translate syntax works...//f
+//    .call(yAxis);
 
 // d3.select("div").on("click", function() {
 //   // dataset = [11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 5, 10, 13, 19, 21, 25, 22, 18, 15, 13];//

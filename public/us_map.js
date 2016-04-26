@@ -35,10 +35,14 @@ var color = d3.scale.quantize()   //A linear scale with discrete output values (
 
 //This d3.csv() function includes d3.json() function within it.//
 d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set input domain for color scale.//
+  var year = 2013;
+
   color.domain([
-    d3.min(data, function(d) { return d.electric_vehicles_2013; }),
-    d3.max(data, function(d) { return d.electric_vehicles_2013; })
+    d3.min(data, function(d) { return d["electric_vehicles_" + year];}),
+    d3.max(data, function(d) { return d["electric_vehicles_" + year];})
   ]);
+//This is a great example of the differences of dot notation and bracket notation.  Originally, color.domain was returning d.electric_vehicles_2013.  However, dot notation does not accept strings.  Therefore, you cannot simply just add the year (d."electric_vehicles_" + year).  Instead, bracket notation executes the same way but it allows strings.  So see above for way to access each year's data.//
+
 
   console.log("Colors added to csv file domain scale.");
 
@@ -46,7 +50,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
   d3.json("us-states.json", function(json) {  //load json file and fires callback function.//
     for (var i = 0; i < data.length; i ++) {  //Loop through data in csv.//
       var dataState = data[i].state;          //Create variable containing state name and get state name from csv.  But how do you know data is an array?//
-      var dataValue = parseFloat(data[i].electric_vehicles_2013);  //Get state data value from "electric_vehicles" column in csv and convert from string to float.//
+      var dataValue = parseFloat(data[i]["electric_vehicles_" +year]);  //Get state data value from "electric_vehicles" column in csv and convert from string to float.//
       for (var j = 0; j < json.features.length; j++) {    //Loop through json to find correspondong state names.//
         var jsonState = json.features[j].properties.name;
         if (dataState === jsonState) {                      //If json state name and csv state name match, send csv data value to json.//
@@ -66,29 +70,29 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
   //Create paths for d3 map.//
   svg.selectAll("path")
-  .data(json.features)
-  .enter()
-  .append("path")
-  .attr("d", path)
-  .style("fill", function(d) {
+    .data(json.features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .style("fill", function(d) {
     var value = d.properties.value;
     if (value) {
       return color(value);
-    }
+      }
     else {
       return "#ccc";
-    }
-  })
-  .on("mouseover", function(d, i) {
+      }
+    })
+    .on("mouseover", function(d, i) {
     d3.select(this)
       .style("fill-opacity", 0.5);
-  })
-  .on("mouseout", function(d, i) {
+    })
+    .on("mouseout", function(d, i) {
     d3.selectAll("path")
       .style("fill-opacity", 1);
-  })
-  .on("click", function() {
+    })
+    .on("click", function() {
     stateView();
+    });
   });
-});
 });
