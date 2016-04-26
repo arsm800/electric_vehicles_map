@@ -14,6 +14,11 @@
  *= require_self
  */
 
+h1 {
+  font-family: Helvetica;
+  text-align: center;
+}
+
  #map {
   height: 500px;
   width: 500px;
