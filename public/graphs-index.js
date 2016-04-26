@@ -5,17 +5,11 @@ console.log("graphs-index");
   // var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
 
   d3.csv("electric_vehicles.csv", function(d) {
-    return {
-      state_abbr: d.state_abbr,
-      electric_vehicles_2013: +d.electric_vehicles_2013,
-      electric_vehicles_2012: +d.electric_vehicles_2012,
-      electric_vehicles_2011: +d.electric_vehicles_2011,
-      electric_vehicles_2010: +d.electric_vehicles_2010,
-      electric_vehicles_2009: +d.electric_vehicles_2009
-    },
-    function(data) {
-      console.log(data[0]);
-    };
+    console.log(d[0]);
+    var dataset = [];
+    for (var i = 0; i < d.length; i ++) {
+      dataset.push(d[i]);
+    }
   });
 //
 //   var w = 1200;
