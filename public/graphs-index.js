@@ -20,7 +20,7 @@ d3.csv("electric_vehicles.csv", function(dataset) {   //"dataset" is the argumen
 
 
 var w = 1200;
-var h = 300;
+var h =400;
 var barpadding = 1;
 
 var svg = d3.select("body")
@@ -83,7 +83,7 @@ svg.selectAll("rect")
       return xScale(i);    //Rectangle location is now based on ordinal scale and not svg/padding.//
       },
     y: function(d) {
-      return h - d.electric_vehicles_2013 * 10;  //d * 10 is a multiplier.  in order to make the bars taller and keep everything else in sync, I had to adjust the d multiplier on for rectangle height (line 37), and text y coordinate (line 55).//
+      return h - d.electric_vehicles_2013 * .175;  //d * 10 is a multiplier.  in order to make the bars taller and keep everything else in sync, I had to adjust the d multiplier on for rectangle height (line 37), and text y coordinate (line 55).//
       },
     width: w / dataset.length - 1,
     height: function(d) {
