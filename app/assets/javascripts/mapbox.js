@@ -7,9 +7,11 @@ var map = L.mapbox.map('map', 'mapbox.dark')
 
 $.getJSON("/stations_json", function(response) {
   response.forEach(function(station) {
+    if (station.state_abbr === "DC") {
     var marker = L.marker([parseFloat(station.latitude), parseFloat(station.longitude)]);
     console.log(marker);
     marker.addTo(map);
+  }
   });
 });
 
