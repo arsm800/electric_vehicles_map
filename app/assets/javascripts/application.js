@@ -15,9 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
-$.getJSON("/stations_json", function(response) {
-  console.log(response);
-});
+// $.getJSON("/stations_json", function(response) {
+//   console.log(response);
+// });
 
 
 // $.ajax({
