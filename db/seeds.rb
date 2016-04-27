@@ -10,7 +10,10 @@
 
 require "csv"
 
-csv_text = File.read(Rails.root.join("db", "electric_vehicles.csv"))
+State.destroy_all
+Station.destroy_all
+
+csv_text = File.read(Rails.root.join("public", "electric_vehicles.csv"))
 csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
   s = State.new
@@ -44,6 +47,8 @@ csv.each do |row|
   e.fed_agency_type = row["fed_agency_type"]
   e.fed_agency_name = row["fed_agency_name"]
   e.ev_connector_types = row["ev_connector_types"]
+  state = State.find_by(state_abbr: row["state_abbr"])
+  e.state = state
   e.save
   puts "#{e.id_number} and corresponding data saved."
 end
