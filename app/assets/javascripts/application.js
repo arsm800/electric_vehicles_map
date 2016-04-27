@@ -15,21 +15,37 @@
 //= require turbolinks
 //= require_tree .
 
+$.getJSON("/stations_json", function(response) {
+  console.log(response);
+});
+
+
+// $.ajax({
+//   type: "GET",
+//   dataType: "json",
+//   url: "localhost:3000/test_ajax"
+// }).done(function(response) {
+//   console.log(response);
+// }).fail(function(response) {
+//   console.log("Failed");
+// });
+
+
 console.log("application");
 
-var getvehicleData = function() {
-  $.getJSON({
-    url: "/get_vehicle_data",
-    type: "get",
-    dataType: "json"
-  });
-};
-// You still need to create a route for the json GET request and create a controller function to get data and format json.//
-
-var getStationData = function () {
-  $.getJSON({
-    url: "/get_stations_data",
-    type: "get",
-    dataType: "json"
-  });
-};
+// var getvehicleData = function() {
+//   $.getJSON({
+//     url: "/get_vehicle_data",
+//     type: "get",
+//     dataType: "json"
+//   });
+// };
+// // You still need to create a route for the json GET request and create a controller function to get data and format json.//
+//
+// var getStationData = function () {
+//   $.getJSON({
+//     url: "/get_stations_data",
+//     type: "get",
+//     dataType: "json"
+//   });
+// };

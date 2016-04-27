@@ -1,5 +1,4 @@
 class StatesController < ApplicationController
-  respond_to :html, :js, :json
 
   def index
     @states = State.all
@@ -7,6 +6,11 @@ class StatesController < ApplicationController
 
   def show
     @state = State.find(params[:id])
+  end
+
+  def states_json
+    @state = State.all
+    render status: 200, json: @state.to_json
   end
 
 end

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   root to: "states#index"
 
+  get "/states_json", to: "states#states_json"
+  get "/stations_json", to: "stations#stations_json"
+
   resources :states do
   resources :stations
 end
