@@ -6,11 +6,11 @@ var map = L.mapbox.map('map', 'mapbox.dark')
 .setView([38.9047, -77.0164], 10);
 
 $.getJSON("/stations_json", function(response) {
-  console.log(response);
-  // response.forEach(latitude and logitude column value) {
-  //   var marker = L.marker([longitude, latitude]);
-  //   marker.addTo(map);
-
+  response.forEach(function(station) {
+    var marker = L.marker([parseFloat(station.latitude), parseFloat(station.longitude)]);
+    console.log(marker);
+    marker.addTo(map);
+  });
 });
 
 
