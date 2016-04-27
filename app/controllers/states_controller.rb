@@ -1,4 +1,5 @@
 class StatesController < ApplicationController
+  respond_to :html, :js, :json
 
   def index
     @states = State.all
