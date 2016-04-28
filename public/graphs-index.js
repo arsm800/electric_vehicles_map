@@ -2,6 +2,17 @@ console.log("graphs-index");
 
 (function() {         //Use IIFE if you have multiple D3 svgs on same page and you don't want all charts to render in one single svg.//
 
+var w = 1200;
+var h =400;
+var barpadding = 1;
+
+var svg = d3.select("body")
+.append("svg")
+.attr("height", h)
+.attr("width", w);
+
+
+
 var drawBars = function(year) {
 
 d3.csv("electric_vehicles.csv", function(dataset) {   //"dataset" is the argument you need to pass through .data() for "rect" and "text".//
@@ -15,17 +26,6 @@ dataset.forEach(function(dd) {
 // for (var i = 0; i < d.length; i ++) {
 //   dataset.push(d[i]);
 console.log(dataset[0]);
-
-
-var w = 1200;
-var h =400;
-var barpadding = 1;
-
-
-var svg = d3.select("body")
-.append("svg")
-.attr("height", h)
-.attr("width", w);
 
 //Create ordinal x scale.//
 var xScale = d3.scale.ordinal()
@@ -67,6 +67,8 @@ svg.selectAll("rect")
   .attr("fill", "rgb(0, 0, " + (d["electric_vehicles_" + year] * 10) + ")");  //This is the same color as defined on original rect attribute.//
 });
 
+console.log(year);
+
 svg.selectAll("text")
 .data(dataset)
 .enter()
@@ -100,23 +102,23 @@ svg.append("g")    //"g" refers to a group element, so we append a group element
 
 var clickEventBars = function() {
   $("#bar2013").on("click", function() {
-    var year = 2013;
+    drawBars(2013);
   });
 
   $("#bar2012").on("click", function() {
-    var year = 2012;
+    drawBars(2012);
   });
 
   $("#bar2011").on("click", function() {
-    var year = 2011;
+    drawBars(2011);
   });
 
   $("#bar2010").on("click", function() {
-    var year = 2010;
+    drawBars(2010);
   });
 
   $("#bar2009").on("click", function() {
-    var year = 2009;
+    drawBars(2009);
   });
 };
 

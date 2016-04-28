@@ -17,7 +17,7 @@ var path = d3.geo.path()
                  .projection(projection);
 
 var color = d3.scale.quantize()   //A linear scale with discrete output values (eg. 5 different colors.//)
-                    .range(["rgb(237, 248, 233)", "rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)"]);
+                    .range(["rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)", "rgb(17, 60, 2)"]);
 
 var stateView = function() {
                   console.log("State clicked.");
@@ -136,5 +136,5 @@ var clickEventMap = function() {
   });
 };
 
-drawMap(2010);
+drawMap(2013);
 clickEventMap();
