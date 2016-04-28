@@ -4,10 +4,10 @@ var w = 1200;
 var h = 800;
 var barpadding = 1;
 
-var svg = d3.select("body")
-.append("svg")
-.attr("height", h)
-.attr("width", w);
+// var svg = d3.select("#usmap")
+// .append("svg")
+// .attr("height", h)
+// .attr("width", w);
 
 var projection = d3.geo.albersUsa()
                        .translate([w/2, h/2]) //This projection variable must be defined before the path variable (below) because otherwise .projection will be undefined.//
@@ -21,10 +21,17 @@ var color = d3.scale.quantize()   //A linear scale with discrete output values (
 
 var stateView = function() {
                   console.log("State clicked.");
-                  location.href="/states/1";  //Still working on how to get this link to go to the specific state clicked on.//
+                  location.href="/states/103";  //Still working on how to get this link to go to the specific state clicked on.//
                   };
 
 var drawMap = function(year) {
+
+$("#usmap").empty();
+
+var svg = d3.select("#usmap")
+.append("svg")
+.attr("height", h)
+.attr("width", w);
 
   // $("svg").empty()
 
@@ -80,6 +87,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
       .enter()
       .append("path")
       .attr("d", path)
+      .attr("state", data.state)
       .on("mouseover", function(d, i) {
         d3.select(this)
         .style("fill-opacity", 0.5);
@@ -94,6 +102,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
       console.log(paths);
       paths.style("fill", function(d) {
+        console.log(d);
         var value = d.properties.value;
         console.log(value);             //Does not show up when I click on year.//
         if (value) {
@@ -111,8 +120,6 @@ var clickEventMap = function() {
   $("#map2013").on("click", function() {
     // var year = 2013;
     drawMap(2013);
-
-
   });
 
   $("#map2012").on("click", function() {

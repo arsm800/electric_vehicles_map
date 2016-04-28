@@ -14,6 +14,8 @@
   </div>
 </div>
 
+<div id="usmap"></div>
+
 <script src="us_map.js"></script>
 
 <div class="dropdown">
@@ -28,3 +30,14 @@
 </div>
 
 <script src="graphs-index.js"></script>
+
+<script>
+
+$.getJSON("/states_json", function(response) {
+  response.forEach(function(state){
+
+  })
+}
+
+
+</script>

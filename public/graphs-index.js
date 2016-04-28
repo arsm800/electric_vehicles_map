@@ -122,7 +122,7 @@ var clickEventBars = function() {
   });
 };
 
-drawBars(2012);
+drawBars(2009);
 clickEventBars();
 
 
