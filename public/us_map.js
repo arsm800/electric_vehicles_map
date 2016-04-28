@@ -4,21 +4,29 @@ var w = 1200;
 var h = 800;
 var barpadding = 1;
 
+var svg = d3.select("body")
+.append("svg")
+.attr("height", h)
+.attr("width", w);
+
+var projection = d3.geo.albersUsa()
+                       .translate([w/2, h/2]) //This projection variable must be defined before the path variable (below) because otherwise .projection will be undefined.//
+                       .scale([1600]);   //The default scale is 1000, so anything less shrinks, and anything greater expands it.//
+
+var path = d3.geo.path()
+                 .projection(projection);
+
+var color = d3.scale.quantize()   //A linear scale with discrete output values (eg. 5 different colors.//)
+                    .range(["rgb(237, 248, 233)", "rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)"]);
+
+var stateView = function() {
+                  console.log("State clicked.");
+                  location.href="/states/1";  //Still working on how to get this link to go to the specific state clicked on.//
+                  };
+
 var drawMap = function(year) {
 
   // $("svg").empty()
-
-  var svg = d3.select("body")
-  .append("svg")
-  .attr("height", h)
-  .attr("width", w);
-
-  var projection = d3.geo.albersUsa()
-                         .translate([w/2, h/2]) //This projection variable must be defined before the path variable (below) because otherwise .projection will be undefined.//
-                         .scale([1600]);   //The default scale is 1000, so anything less shrinks, and anything greater expands it.//
-
-  var path = d3.geo.path()
-                   .projection(projection);
 
 // d3.json("us-states.json", function(json) {  //You will need to set up a local server (http, php, etc.) in order for the Chrome browser to render the data from the json in the browser view.//
 //
@@ -34,11 +42,6 @@ var drawMap = function(year) {
 //
 // });
 
-  var color = d3.scale.quantize()   //A linear scale with discrete output values (eg. 5 different colors.//)
-                    .range(["rgb(237, 248, 233)", "rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)"]);
-
-
-
 //This d3.csv() function includes d3.json() function within it.//
 d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set input domain for color scale.//
 
@@ -46,11 +49,10 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
   color.domain([
     d3.min(data, function(d) {return d["electric_vehicles_" + year];}),
     d3.max(data, function(d) { return d["electric_vehicles_" + year];})
-
   ]);
 //This is a great example of the differences of dot notation and bracket notation.  Originally, color.domain was returning d.electric_vehicles_2013.  However, dot notation does not accept strings.  Therefore, you cannot simply just add the year (d."electric_vehicles_" + year).  Instead, bracket notation executes the same way but it allows strings.  So see above for way to access each year's data.//
 
-  console.log(year);
+
   console.log("Colors added to csv file domain scale.");
 
   //Merge electrical vehicle data into GeoJSON.//
@@ -68,28 +70,16 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
     }
 
     console.log("json data merge complete");
-
+    console.log(year);
     //Create function to route to state view.//
-    var stateView = function() {
-    console.log("State clicked.");
-    location.href="/states/1";  //Still working on how to get this link to go to the specific state clicked on.//
-    };
+
 
     //Create paths for d3 map.//
-    svg.selectAll("path")
+    var paths = svg.selectAll("path")
       .data(json.features)
       .enter()
       .append("path")
       .attr("d", path)
-      .style("fill", function(d) {
-        var value = d.properties.value;
-        if (value) {
-          return color(value);
-        }
-        else {
-          return "#ccc";
-        }
-      })
       .on("mouseover", function(d, i) {
         d3.select(this)
         .style("fill-opacity", 0.5);
@@ -100,6 +90,17 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
       })
       .on("click", function() {
         stateView();
+      });
+
+      console.log(paths);
+      paths.style("fill", function(d) {
+        var value = d.properties.value;
+        if (value) {
+          return color(value);
+        }
+        else {
+          return "#ccc";
+        }
       });
   });
 });
@@ -132,5 +133,5 @@ var clickEventMap = function() {
   });
 };
 
-drawMap(2013);
+drawMap();
 clickEventMap();
