@@ -95,6 +95,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
       console.log(paths);
       paths.style("fill", function(d) {
         var value = d.properties.value;
+        console.log(value);             //Does not show up when I click on year.//
         if (value) {
           return color(value);
         }
@@ -110,6 +111,8 @@ var clickEventMap = function() {
   $("#map2013").on("click", function() {
     // var year = 2013;
     drawMap(2013);
+
+
   });
 
   $("#map2012").on("click", function() {
@@ -133,5 +136,5 @@ var clickEventMap = function() {
   });
 };
 
-drawMap();
+drawMap(2010);
 clickEventMap();
