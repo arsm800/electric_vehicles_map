@@ -6,7 +6,7 @@ var w = 1200;
 var h =400;
 var barpadding = 1;
 
-var svg = d3.select("body")
+var svg = d3.select("#bars")
 .append("svg")
 .attr("height", h)
 .attr("width", w);
@@ -14,6 +14,13 @@ var svg = d3.select("body")
 
 
 var drawBars = function(year) {
+
+$("#bars").empty();
+
+var svg = d3.select("#bars")
+  .append("svg")
+  .attr("height", h)
+  .attr("width", w);
 
 d3.csv("electric_vehicles.csv", function(dataset) {   //"dataset" is the argument you need to pass through .data() for "rect" and "text".//
 dataset.forEach(function(dd) {
@@ -122,7 +129,7 @@ var clickEventBars = function() {
   });
 };
 
-drawBars(2009);
+drawBars(2013);
 clickEventBars();
 
 
