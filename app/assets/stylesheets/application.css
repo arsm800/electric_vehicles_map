@@ -14,10 +14,11 @@
  *= require_self
  */
 
-h1 {
+h1, h2, h3, #home {
   font-family: Helvetica;
   text-align: center;
 }
+
 
 .axis text {
   font-size: 12px;
@@ -70,5 +71,7 @@ h1 {
 
  #map {
   height: 500px;
-  width: 500px;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
  }
