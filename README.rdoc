@@ -29,6 +29,6 @@ In prior ruby & rails examples, the actual data was kept to a minimum.  I had to
 
 -Implementing D3
 
-This affected everything.
+This affected everything.  I worked through examples from the O'Reilly D3 book (written by Scott Murray).  It was challenging to simultaneously absorb concepts in D3 visualization and concepts taught in the actual GA WDI curriculum
 
 -Syncing D3 and Rails
