@@ -33,6 +33,13 @@
 
 <script src="graphs-index.js"></script>
 
+<div id="buttons">
+  <% @states.each do |state| %>
+    <%= button_to state.state, state_path(state), :method => "get", :class => "state-button" %>
+    <!-- <button class="state-button" type="button" onclick=" <%= state_path(state) %> "> <%= state.state %> </button>  -->
+  <% end %>
+</div>
+
 
 
 

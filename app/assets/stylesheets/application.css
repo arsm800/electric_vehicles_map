@@ -69,9 +69,23 @@ h1, h2, h3, #home {
     background-color: #3e8e41;
 }
 
+.state-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 10px;
+  border: none;
+  cursor: pointer;
+}
+
  #map {
   height: 500px;
   width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
+ }
+
+ #buttons {
+  margin-top: 2em;
+  margin-bottom: 2em;
  }
