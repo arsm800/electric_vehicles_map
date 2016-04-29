@@ -76,6 +76,8 @@ h1, h2, h3, #home {
   font-size: 10px;
   border: none;
   cursor: pointer;
+  float: left;
+  margin: .1em .8em .8em .8em;
 }
 
  #map {
