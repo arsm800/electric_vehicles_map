@@ -19,9 +19,10 @@ var path = d3.geo.path()
 var color = d3.scale.quantize()   //A linear scale with discrete output values (eg. 5 different colors.//)
                     .range(["rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49, 163, 84)", "rgb(0, 109, 44)", "rgb(17, 60, 2)"]);
 
+//Create function to route to state view.//
 var stateView = function() {
                   console.log("State clicked.");
-                  location.href="/states/103";  //Still working on how to get this link to go to the specific state clicked on.//
+                  location.href="/states/111";  //Still working on how to get this link to go to the specific state clicked on.//
                   };
 
 var drawMap = function(year) {
@@ -78,7 +79,7 @@ d3.csv("electric_vehicles.csv", function(data) {  //Load csv file data and set i
 
     console.log("json data merge complete");
     console.log(year);
-    //Create function to route to state view.//
+
 
 
     //Create paths for d3 map.//
