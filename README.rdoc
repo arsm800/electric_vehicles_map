@@ -1,28 +1,34 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* User Stories
 
-Things you may want to cover:
+On the main page, the user should see a US map.  Each state's color represent the number of electric vehicles in use.  The map defaults to data on electric vehicles in 2013 and by selecting a "year" button from a dropdown menu, the user can toggle between data on electric vehicles from 2009-2013.
 
-* Ruby version
+The user can click on each state, which will direct to that particular state's show page.
 
-* System dependencies
+Additionally, the user should see a bar chart.  There is a bar representing each state.  The bar chart graphically visualizes the number of electric vehicles in each state.  Like the US map, there is a "year" dropdown menu where the user can update the bar chart to show vehicle numbers from 2009-2013.
 
-* Configuration
+On each state's show page, the user sees a map.  The map is centered on that particular state and the map has the locations of charging stations denoted by map markers.  Ideally, the marker clusters function from the mapbox suite would be utilized here.  There is also a station counter at the top of the page which states the number of stations in each state.
+
 
 * Database creation
 
+The data on electric vehicle charging stations and electric vehicles came from the U.S. Department of Energy.  It includes information on just under 16,000 charging stations in the United States as of April, 2015 and data on electric vehicles in service by state and local government entities from 2009-2013.
+
+
 * Database initialization
 
-* How to run the test suite
+Because these data sets came in csv form, the rows and columns had to be mapped to classes and attributes.  This conversion was done in the seeds.rb file.  From an ERD standpoint the relationship between classes was a belongs_to / has_many; specifically, states have many stations and stations belong to states.  When I initially seeded active record, the two data sets were complete, but the relationships did not exist.  By adding "  state = State.find_by(state_abbr: row["state_abbr"])
+  e.state = state"", the column "state_abbr", which appears in each data table, is set to link the two tables.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Issues/Challenges
 
-* Deployment instructions
+-Uploading data
 
-* ...
+In prior ruby & rails examples, the actual data was kept to a minimum.  I had to research how to upload csv files to a rails database.
 
+-Implementing D3
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This affected everything.
+
+-Syncing D3 and Rails

@@ -93,6 +93,14 @@ h1, h2, h3, #home {
   margin: .1em .8em .3em .3em;
 }
 
+#bars {
+  margin: 0 auto;
+}
+
+#usmap {
+  margin: 0 auto;
+}
+
  #map {
   height: 500px;
   width: 1000px;
