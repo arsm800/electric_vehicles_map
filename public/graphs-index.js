@@ -65,7 +65,7 @@ svg.selectAll("rect")
 })
 .on("mouseover", function() {      //Changes color of bar when mouse hovers over it.//
   d3.select(this)
-  .attr("fill", "lime");
+  .attr("fill", "aqua");
 })
 .on("mouseout", function(d) {    //Changes color of bar back to original color after mouse leaves.//
   d3.select(this)

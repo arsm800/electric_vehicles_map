@@ -6,35 +6,34 @@
 <div class="dropdown">
   <button class="dropbtn">Year</button>
   <div class="dropdown-content">
-    <button id="map2013">2013</button>
-    <button id="map2012">2012</button>
-    <button id="map2011">2011</button>
-    <button id="map2010">2010</button>
-    <button id="map2009">2009</button>
+    <button class="dropbtn-year" id="map2013">2013</button>
+    <button class="dropbtn-year" id="map2012">2012</button>
+    <button class="dropbtn-year" id="map2011">2011</button>
+    <button class="dropbtn-year" id="map2010">2010</button>
+    <button class="dropbtn-year" id="map2009">2009</button>
   </div>
 </div>
 
 <div id="usmap"></div>
 
-<script src="us_map.js"></script>
-
 <div class="dropdown">
   <button class="dropbtn">Year</button>
   <div class="dropdown-content">
-    <button id="bar2013">2013</button>
-    <button id="bar2012">2012</button>
-    <button id="bar2011">2011</button>
-    <button id="bar2010">2010</button>
-    <button id="bar2009">2009</button>
+    <button class="dropbtn-year" id="bar2013">2013</button>
+    <button class="dropbtn-year" id="bar2012">2012</button>
+    <button class="dropbtn-year" id="bar2011">2011</button>
+    <button class="dropbtn-year" id="bar2010">2010</button>
+    <button class="dropbtn-year" id="bar2009">2009</button>
   </div>
 </div>
 
 <div id="bars"></div>
-
-<script src="graphs-index.js"></script>
 
 <div id="buttons">
   <% @states.each do |state| %>
     <%= button_to state.state, state_path(state), :method => "get", :class => "state-button" %>
   <% end %>
 </div>
+
+<script src="us_map.js"></script>
+<script src="graphs-index.js"></script>
