@@ -22,7 +22,7 @@ var color = d3.scale.quantize()   //A linear scale with discrete output values (
 //Create function to route to state view.//
 var stateView = function() {
                   console.log("State clicked.");
-                  location.href="/states/111";  //Still working on how to get this link to go to the specific state clicked on.//
+                  location.href="/states/60";  //Still working on how to get this link to go to the specific state clicked on.//
                   };
 
 var drawMap = function(year) {
