@@ -14,7 +14,7 @@ console.log("mapbox");
 L.mapbox.accessToken = "pk.eyJ1IjoiYXJzbTgwMCIsImEiOiJjaWw2emQ0cG4wMDR1dWttMHpqbnNreTduIn0.UNqZukLBJRc2FuAvpwVuWQ";
 
 var map = L.mapbox.map("map", "mapbox.dark")
-.setView([38.9047, -77.0164], 11);
+.setView([ "<%= @state.latitude %>", "<%= @state.longitude %>" ], 11);
 
 $.getJSON("/stations_json", function(response) {
   // console.log(response);

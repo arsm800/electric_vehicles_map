@@ -24,8 +24,10 @@ csv.each do |row|
   s.electric_vehicles_2011 = row["electric_vehicles_2011"]
   s.electric_vehicles_2010 = row["electric_vehicles_2010"]
   s.electric_vehicles_2009 = row["electric_vehicles_2009"]
+  s.latitude = row["latitude"]
+  s.longitude = row["longitude"]
   s.save
-  puts "#{s.state_abbr}, #{s.state}, #{s.electric_vehicles_2013}, #{s.electric_vehicles_2012}, #{s.electric_vehicles_2011}, #{s.electric_vehicles_2010}, #{s.electric_vehicles_2009}, saved"
+  puts "#{s.state_abbr}, #{s.state}, #{s.electric_vehicles_2013}, #{s.electric_vehicles_2012}, #{s.electric_vehicles_2011}, #{s.electric_vehicles_2010}, #{s.electric_vehicles_2009}, #{s.latitude}, #{s.longitude} saved"
 end
 
 require "csv"
